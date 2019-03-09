@@ -1,9 +1,12 @@
 package ristinolla.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Ristinolla {
 
     public static void main(String[] args) {
-        System.out.print("This is ristinolla");
+        Kayttoliittyma kayttis = new Kayttoliittyma();
+        kayttis.kaynnista();
     }
-
 }
