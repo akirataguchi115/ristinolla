@@ -1,0 +1,1 @@
+pitäisi suorittaa jacocolla kaikki valmiiksi
