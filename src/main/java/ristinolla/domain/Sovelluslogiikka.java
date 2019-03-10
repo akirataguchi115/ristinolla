@@ -83,6 +83,7 @@ public class Sovelluslogiikka {
         risti = 0;
         nolla = 0;
         
+        //cross-check
         for (int i = 2; i >= 0; i--) {
             if (this.ruudut.get(2-i).get(i).equals("Risti")) {
                 risti++;
