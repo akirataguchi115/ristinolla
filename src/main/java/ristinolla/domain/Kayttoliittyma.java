@@ -17,32 +17,54 @@ public class Kayttoliittyma {
         System.out.println("Tervetuloa ristinollaan!\n"
                 + "Kolme putkeen voittaa\n"
                 + "Syöte muodossa \"x,y\"");
-        logiikka.alustaRuudut();
+        this.logiikka.alustaRuudut();
 
         boolean jatka = true;
         while (jatka) {
-            //tulosta tila
-            for (List<String> lista : this.logiikka.getRuudut()) {
-                for (String ruutu : lista) {
-                    if (ruutu.equals("Tyhjä")) {
-                        System.out.print("-");
-                    }
-                }
-                System.out.print("\n");
-            }
+            System.out.print("\nSiirtovuoro: " + this.logiikka.getVuoro() + "\n");
+            tulostaTilanne();
+            System.out.print("\n");
             while (true) {
                 System.out.print(">");
                 String siirto = lukija.nextLine();
-                if (this.logiikka.sallittuSiirto(siirto)) {
+                if (this.logiikka.onkoSallittuSiirto(siirto)) {
+                    this.logiikka.siirra(siirto);
                     break;
                 }
                 System.out.println("Epäkelpo syöte!");
             }
-            if (this.logiikka.paattynyt()) {
+            if (this.logiikka.onkoPaattynyt()) {
+                //chekkaa onko draw
                 jatka = false;
-                continue;
             }
+            this.logiikka.vuoronVaihto();
         }
-        //julista voittaja
+        tulostaTilanne();
+        if (this.logiikka.getVoittaja().isEmpty()) {
+            System.out.print("Game over!\nTasapeli!");
+        } else {
+            System.out.print("Game over!\nVoittaja: "
+                    + this.logiikka.getVoittaja()
+            );
+        }
+    }
+
+    public void tulostaTilanne() {
+        for (List<String> lista : this.logiikka.getRuudut()) {
+            for (String ruutu : lista) {
+                switch (ruutu) {
+                    case "Tyhjä":
+                        System.out.print("-");
+                        break;
+                    case "Risti":
+                        System.out.print("X");
+                        break;
+                    case "Nolla":
+                        System.out.print("0");
+                        break;
+                }
+            }
+            System.out.print("\n");
+        }
     }
 }
