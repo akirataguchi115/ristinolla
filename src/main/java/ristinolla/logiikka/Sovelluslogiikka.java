@@ -3,18 +3,28 @@ package ristinolla.logiikka;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Mainitaan muuttujat ensimmäistä kertaa
+ * @author Akira
+ */
 public class Sovelluslogiikka {
 
     private List<List<String>> ruudut;
     private String vuoro;
     private String voittaja;
 
+    /**
+     *Parametriton konstruktori alustaa muuttujat
+     */
     public Sovelluslogiikka() {
         this.ruudut = new ArrayList<>();
         this.vuoro = "Risti";
         this.voittaja = "";
     }
 
+    /**
+     *tyhjentää kaikki ruudut pelissä
+     */
     public void alustaRuudut() {
         this.ruudut.clear();
         for (int u = 0; u < 3; u++) {
@@ -25,6 +35,11 @@ public class Sovelluslogiikka {
         }
     }
 
+    /**
+     * Checks horizontal, vertical and cross streaks of 3
+     * @return true if someone has won, or there are no space left in the grid
+     * @since 2.16
+     */
     public boolean onkoPaattynyt() { //testaa onko voittaja horisontaalissa
         int risti = 0;
         int nolla = 0;
@@ -109,6 +124,11 @@ public class Sovelluslogiikka {
         return true;
     }
 
+    /**
+     *
+     * @param siirto String format: x + "," + y
+     * @return boolean whether the grid is empty
+     */
     public boolean onkoSallittuSiirto(String siirto) {
         String[] palat = siirto.split(",");
         int x;
@@ -130,6 +150,10 @@ public class Sovelluslogiikka {
         return false;
     }
 
+    /**
+     *Usually following the method onkoSallittuSiirto (checks if the place in the grid is empty)
+     * @param siirto coordinates of the place in the grid
+     */
     public void siirra(String siirto) {
         String[] palat = siirto.split(",");
         int x = Integer.valueOf(palat[0]);
@@ -137,6 +161,10 @@ public class Sovelluslogiikka {
         this.ruudut.get(x).set(y, this.vuoro);
     }
 
+    /**
+     *Mikäli vuoro on risti, vaihtuu vuoroksi nolla
+     * ja vice versa
+     */
     public void vuoronVaihto() {
         if (this.vuoro.equals("Risti")) {
             this.vuoro = "Nolla";
@@ -145,14 +173,26 @@ public class Sovelluslogiikka {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public List<List<String>> getRuudut() {
         return ruudut;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getVoittaja() {
         return voittaja;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getVuoro() {
         return vuoro;
     }
