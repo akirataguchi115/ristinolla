@@ -1,14 +1,15 @@
-package ristinolla.domain;
+package ristinolla.kayttoliittyma;
 
+import ristinolla.logiikka.Sovelluslogiikka;
 import java.util.List;
 import java.util.Scanner;
 
-public class Kayttoliittyma {
+public class TekstiKayttoliittyma {
 
     Sovelluslogiikka logiikka;
     Scanner lukija;
 
-    public Kayttoliittyma() {
+    public TekstiKayttoliittyma() {
         this.logiikka = new Sovelluslogiikka();
         this.lukija = new Scanner(System.in);
     }
